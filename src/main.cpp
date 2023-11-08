@@ -15,8 +15,9 @@ int main()
     Solver solver;
 
     solver.addObject({window_width / 2.0,0,},{1,0.0});
-    solver.addObject({window_width / 2.0-100,0,},{-1,0.0});
-
+    solver.addObject({105,0,},{0,0.0});
+    solver.addObject({111,0,},{0,0.0});
+    solver.addObject({122,0,},{0,0.0});
     while (window.isOpen())
     {
         for (auto event = sf::Event{}; window.pollEvent(event);)
