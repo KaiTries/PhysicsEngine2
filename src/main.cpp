@@ -1,9 +1,21 @@
 #include <SFML/Graphics.hpp>
+#include "Renderer.hpp"
+#include "Solver.h"
 
 int main()
 {
-    auto window = sf::RenderWindow{ { 1920u, 1080u }, "CMake SFML Project" };
+    constexpr int32_t window_width  = 1920;
+    constexpr int32_t window_height = 1080;
+    sf::ContextSettings settings;
+    sf::RenderWindow window(sf::VideoMode(window_width, window_height), "PhysicsDemo", sf::Style::Default, settings);
     window.setFramerateLimit(144);
+
+
+    Renderer renderer(window);
+    Solver solver;
+
+    solver.addObject({window_width / 2.0,0,},{1,0.0});
+    solver.addObject({window_width / 2.0-100,0,},{-1,0.0});
 
     while (window.isOpen())
     {
@@ -16,6 +28,8 @@ int main()
         }
 
         window.clear();
+        solver.update(0.01);
+        renderer.render(solver);
         window.display();
     }
 }
